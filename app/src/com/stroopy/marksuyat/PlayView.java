@@ -15,6 +15,9 @@ public class PlayView extends View {
     private PointF wayPoint = new PointF(0, 0);
     private PointF circleVelocity = new PointF(0f, 0f);
     private float gravity = 0.01f;
+    private Paint paint;
+    private DisplayWord displayWord1;
+    private DisplayWord displayWord2;
 
     public PlayView(Context context) {
 	super(context);
@@ -31,12 +34,11 @@ public class PlayView extends View {
 	init();
     }
 
-    private Paint paint;
-
     private void init() {
 	Log.i("tag", "hey!");
 	paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-	paint.setTextSize(22f);
+	displayWord1 = new DisplayWord();
+	displayWord2 = new DisplayWord();
     }
 
     @Override
@@ -53,13 +55,18 @@ public class PlayView extends View {
 	    circleVelocity.y *= -1;
 	}
 	float radius = (width / 16f);
+
 	paint.setColor(Color.GREEN);
 	canvas.drawCircle(wayPoint.x, wayPoint.y, radius / 2f, paint);
 	paint.setColor(Color.MAGENTA);
 	canvas.drawCircle(circePoint.x, circePoint.y, radius, paint);
 	paint.setColor(Color.WHITE);
-	canvas.drawText("dasdas", circePoint.x, circePoint.y, paint);
-	// Log.e("ss", circePoint.x + "");
+	paint.setTextSize(99f);
+
+	paint.setColor(Color.CYAN);
+	paint.setTextSize(100);
+	canvas.drawText(displayWord1.getWord(), 250, 300, paint);
+	canvas.drawText(displayWord2.getWord(), 250, 500, paint);
 
     }
 
@@ -87,5 +94,7 @@ public class PlayView extends View {
     public void onTouch(float x, float y) {
 	wayPoint.x = x;
 	wayPoint.y = y;
+	displayWord1.changeWord();
+	displayWord2.changeWord();
     }
 }

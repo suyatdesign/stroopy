@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
 		runOnUiThread(new Runnable() {
 		    public void run() {
 			MainActivity.this.onMainLoop();
+
 		    }
 		});
 	    }
