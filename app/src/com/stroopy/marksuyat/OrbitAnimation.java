@@ -1,7 +1,6 @@
 package com.stroopy.marksuyat;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 
@@ -13,8 +12,12 @@ public class OrbitAnimation {
     private float gravity = 0.01f;
     private Paint paint;
     private float attraction;
+    private int colorCircle;
+    private int colorWaypoint;
 
-    public OrbitAnimation(float attraction) {
+    public OrbitAnimation(float attraction, int colorCircle, int colorWaypoint) {
+	this.colorCircle = colorCircle;
+	this.colorWaypoint = colorWaypoint;
 	paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	this.attraction = attraction;
     }
@@ -33,11 +36,10 @@ public class OrbitAnimation {
 	}
 	float radius = (width / 16f);
 
-	paint.setColor(Color.GREEN);
+	paint.setColor(colorWaypoint);
 	canvas.drawCircle(wayPoint.x, wayPoint.y, radius / 2f, paint);
-	paint.setColor(Color.MAGENTA);
+	paint.setColor(colorCircle);
 	canvas.drawCircle(circePoint.x, circePoint.y, radius, paint);
-	paint.setColor(Color.WHITE);
 
     }
 
@@ -53,8 +55,6 @@ public class OrbitAnimation {
 	} else {
 	    circleVelocity.y -= attraction * gravity;
 	}
-	//
-	// circleVelocity.y += gravity;
     }
 
     private void moveCircle() {

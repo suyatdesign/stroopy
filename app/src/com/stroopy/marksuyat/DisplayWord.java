@@ -41,4 +41,8 @@ public class DisplayWord {
 	paint.setTextSize(100);
 	canvas.drawText(getWord(), x, y, paint);
     }
+
+    public void onTouch(float x, float y) {
+	changeWord();
+    }
 }
