@@ -2,12 +2,18 @@ package com.stroopy.marksuyat;
 
 import java.util.Random;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
 public class DisplayWord {
 
     private String word;
+    private Paint paint;
 
     public DisplayWord() {
-	this.word = createWord();
+	word = createWord();
+	paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
 
     private String createWord() {
@@ -29,11 +35,10 @@ public class DisplayWord {
 	this.word = createWord();
     }
 
-    // private void onDraw(Canvas canvas) {
-    // Paint color = new Paint(Paint.ANTI_ALIAS_FLAG);
-    //
-    // color.setColor(Color.CYAN);
-    // color.setTextSize(100);
-    // canvas.drawText(createWord(), 250, 300, color);
-    // }
+    public void draw(Canvas canvas, float x, float y) {
+	paint.setTextSize(99f);
+	paint.setColor(Color.CYAN);
+	paint.setTextSize(100);
+	canvas.drawText(getWord(), x, y, paint);
+    }
 }
