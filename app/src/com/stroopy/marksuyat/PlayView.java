@@ -36,7 +36,7 @@ public class PlayView extends View {
     private void init() {
 	Log.i("tag", "hey!");
 	paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-
+	paint.setTextSize(22f);
     }
 
     @Override
@@ -46,11 +46,19 @@ public class PlayView extends View {
 	calcVelocity();
 	moveCircle();
 
+	if (circePoint.x >= width || circePoint.x <= 0) {
+	    circleVelocity.x *= -1;
+	}
+	if (circePoint.y >= height || circePoint.y <= 0) {
+	    circleVelocity.y *= -1;
+	}
 	float radius = (width / 16f);
 	paint.setColor(Color.GREEN);
 	canvas.drawCircle(wayPoint.x, wayPoint.y, radius / 2f, paint);
 	paint.setColor(Color.MAGENTA);
 	canvas.drawCircle(circePoint.x, circePoint.y, radius, paint);
+	paint.setColor(Color.WHITE);
+	canvas.drawText("dasdas", circePoint.x, circePoint.y, paint);
 	// Log.e("ss", circePoint.x + "");
 
     }
